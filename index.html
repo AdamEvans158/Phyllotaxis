@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phyllotaxis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/main.js" type="module" defer></script>
+</head>
+<body>
+
+    <main>
+        <div class="options-container" id="options">
+            <div class="settings-title-container">
+                <h1>Settings</h1>
+            </div>
+
+            <div class="options">
+                <div class="expansion-rate-container flex-item">
+                    <h2>Rate of Expansion</h2>
+                    <input type="text" name="Rate of Expansion input" id="expansionRate" placeholder="Enter rate of Expansion" value="10">
+                </div>
+                <div class="angle-container flex-item">
+                    <h2>Angle</h2>
+                    <input type="text" name="Angle input" id="angleInput" placeholder="Enter angle" value="137.5">
+                </div>
+                <div class="color-container flex-item">
+                    <h2>Color</h2>
+                    <input type="text" name="Color input" id="colorInput" placeholder="Enter a color" value="white">
+                    <br>
+                    <span>
+                        <label for="rainbow">Rainbow: </label>
+                        <input type="checkbox" name="rainbow checkbox" id="rainbow">
+                    </span>
+                </div>
+            </div>
+            
+            <button id="generate" class="generate">Generate</button>
+        </div>
+
+        <canvas id="canvas" class="canvas"></canvas>
+    </main>
+
+</body>
+</html>
