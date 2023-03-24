@@ -11,6 +11,8 @@
 <body>
 
     <main>
+        <canvas id="canvas" class="canvas"></canvas>
+
         <div class="options-container" id="options">
             <div class="settings-title-container">
                 <h1>Settings</h1>
@@ -28,18 +30,19 @@
                 <div class="color-container flex-item">
                     <h2>Color</h2>
                     <input type="text" name="Color input" id="colorInput" placeholder="Enter a color" value="white">
-                    <br>
-                    <span>
-                        <label for="rainbow">Rainbow: </label>
-                        <input type="checkbox" name="rainbow checkbox" id="rainbow">
-                    </span>
                 </div>
+                <span>
+                    <h2>Other</h2>
+                    <label for="slideShow">Slide Show: </label>
+                    <input type="checkbox" name="slide show" id="slideShow">
+                    <br>
+                    <label for="rainbow">Rainbow: </label>
+                    <input type="checkbox" name="rainbow checkbox" id="rainbow">
+                </span>
             </div>
             
             <button id="generate" class="generate">Generate</button>
         </div>
-
-        <canvas id="canvas" class="canvas"></canvas>
     </main>
 
 </body>

@@ -1,10 +1,17 @@
 import Point from "./Point.js";
 
 const options = document.getElementById("options");
+const optionValues = options.getBoundingClientRect();
 
 const canvas = document.getElementById('canvas');
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth - options.getBoundingClientRect().width; 
+
+if(window.innerWidth < 832){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+} else if(window.innerWidth >= 832){
+    canvas.width = window.innerWidth - optionValues.width;
+    canvas.height = window.innerHeight;
+}
 
 let ctx = canvas.getContext('2d');
 
@@ -13,6 +20,8 @@ ctx.translate(canvas.width / 2, canvas.height / 2);
 let points = [];
 
 let timer;
+
+ctx.fillRect(0,0 , 100, 100)
 
 function generatePoints(){
     clearInterval(timer);
