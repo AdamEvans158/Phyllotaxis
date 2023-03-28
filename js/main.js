@@ -1,17 +1,16 @@
-import Point from "./Point.js";
+import generatePoints from "./generatePoints.js";
+import SlideShow from "./slideShow.js";
 
 const options = document.getElementById("options");
 const optionValues = options.getBoundingClientRect();
 
 const canvas = document.getElementById('canvas');
-
 if(window.innerWidth < 832){
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 } else if(window.innerWidth >= 832){
     canvas.width = window.innerWidth - optionValues.width;
-    canvas.height = window.innerHeight;
 }
+canvas.height = window.innerHeight;
 
 let ctx = canvas.getContext('2d');
 
@@ -19,33 +18,12 @@ ctx.translate(canvas.width / 2, canvas.height / 2);
 
 let points = [];
 
-let timer;
+let timer = [];
+let rateOfExpansion = 10;
+let angle = 137.5;
+let maxCircles = 750;
 
-ctx.fillRect(0,0 , 100, 100)
-
-function generatePoints(){
-    clearInterval(timer);
-
-    let n = 0;
-    let c = 10;
-    let theta = 137.5;
-    let max = 800;
-    timer = setInterval(function () {
-        let phi = n * theta;
-        let r = c * Math.sqrt(n)
-        let x = Math.cos(phi) * r;
-        let y = Math.sin(phi) * r;
-
-        let point = new Point(x, y, "red");
-        points.push(point);
-
-        if(n >= max) clearInterval(timer);
-
-        n++;
-    }, 1)
-}
-
-generatePoints();
+generatePoints(rateOfExpansion, angle, maxCircles, points, timer);
 
 function animate(){
     requestAnimationFrame(animate);
@@ -56,3 +34,37 @@ function animate(){
 }
 
 animate();
+
+window.addEventListener("resize", function(){
+    location.reload();
+});
+
+const rateOfExpansionInput = document.getElementById("expansionRate");
+rateOfExpansionInput.addEventListener("change", e => {
+    rateOfExpansion = e.target.value;
+})
+
+const angleInput = document.getElementById("angleInput");
+angleInput.addEventListener("change", e => {
+    angle = e.target.value;
+});
+
+const generateBtn = document.getElementById("generate");
+generateBtn.addEventListener("click", function(){
+    generatePoints(rateOfExpansion, angle, maxCircles, points, timer);
+});
+
+const maxCirclesInput = document.getElementById("maxCirclesInput");
+maxCirclesInput.addEventListener("change", e => {
+    maxCircles = e.target.value;
+});
+
+const slideShowBtn = document.getElementById("slideShow");
+const slideShow = new SlideShow(generatePoints);
+slideShowBtn.addEventListener("change", function(){
+    if(this.checked){
+        slideShow.start(maxCircles, angle, rateOfExpansion, points, timer);
+    } else {
+        slideShow.stop();
+    }
+})
