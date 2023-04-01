@@ -52,6 +52,8 @@ angleInput.addEventListener("change", e => {
 const generateBtn = document.getElementById("generate");
 generateBtn.addEventListener("click", function(){
     generatePoints(rateOfExpansion, angle, maxCircles, points, timer);
+    slideShow.stop();
+    slideShowBtn.checked = false;
 });
 
 const maxCirclesInput = document.getElementById("maxCirclesInput");
